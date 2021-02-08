@@ -1,7 +1,7 @@
 const eventTypes = require('./eventTypes');
 
-export function addSSN(params) {
-  const {userID, ssn} = params;
+module.exports.addSSN =  (params) => {
+  const {user, ssn} = params;
   if(user.ssn != null) {
     throw new Error('User already have ssn');
   }

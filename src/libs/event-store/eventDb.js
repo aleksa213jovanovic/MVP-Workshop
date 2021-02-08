@@ -6,4 +6,4 @@ const UserEventSchema = new Schema({
   createdAt: {type: Date, default: Date.now}
 });
 
-module.exports.UserEventModel = mongoose.model("UserEvent", UserEventSchema);
+module.exports = mongoose.model("UserEvent", UserEventSchema);

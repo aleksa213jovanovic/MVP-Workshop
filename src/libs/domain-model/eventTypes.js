@@ -1,13 +1,13 @@
-module.exports = [
+module.exports.eventTypes = [
   {
     type: 'UserAdded',
-    userId,
-    name,
-    email,
+    userId: null,
+    name: null,
+    email: null,
   },
   {
     type: 'UserAddedSSN',
-    userId,
-    SSN,
+    userId: null,
+    SSN: null,
   }
 ];

@@ -8,4 +8,4 @@ const UserViewSchema = new Schema({
   createdAt: {type: Date, default:Date.now}
 });
 
-module.exports.UserViewModel = mongoose.model("UserView", UserViewSchema);
+module.exports = mongoose.model("UserView", UserViewSchema);

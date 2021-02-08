@@ -1,4 +1,4 @@
-const addSSN = require('../domain-model')
+const addSSN = require('../domain-model/user')
 const UserRepository = require('../repository');
 
 module.exports = {
