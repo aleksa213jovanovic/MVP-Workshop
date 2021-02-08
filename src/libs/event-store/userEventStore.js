@@ -30,8 +30,6 @@ class userEventStore {
       return;
     }
   }
-
-
 }
 
 module.exports = userEventStore;
