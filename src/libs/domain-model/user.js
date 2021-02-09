@@ -1,4 +1,5 @@
-const eventTypes = require('./eventTypes');
+const eventTypes = require('./eventTypes').eventTypes;
+
 
 module.exports.addSSN =  (params) => {
   const {user, ssn} = params;

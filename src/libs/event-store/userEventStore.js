@@ -7,9 +7,9 @@ class userEventStore {
   }
 
   async getUserEventsByID(userID) {
-    const query = this.eventModel.find();
-    query.where('eventData.userId').eq(userID);
-    return await query.exec();
+   // const query = this.eventModeel.find();
+    //query.where('eventData.userId').eq(userID);
+    return await this.eventModel.find({'eventData.userId': userID}).exec();
   }
 
   async getUserViewByID(userID) {
@@ -21,10 +21,11 @@ class userEventStore {
     }
   }
 
-  async save(events, user) {
+  async updateUser(events, newUser) {
     try{
       await this.eventModel.create(events);
-      await this.viewModel.create(user);
+      const user = await this.viewModel.findOneAndUpdate({id: newUser.id}, newUser).exec();
+      await user.save();
     } catch(err) {
       console.log(err)
       return;

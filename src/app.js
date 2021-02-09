@@ -46,7 +46,7 @@ app.post('/api/v1/user/', async (req, res) => {
   }
   const commandHandler = Object.values(commandHandlerObject)[0];
   const command = {
-    userID: req.body.userID,
+    userId: req.body.userId,
     payload: req.body.command.payload,
   }
 
