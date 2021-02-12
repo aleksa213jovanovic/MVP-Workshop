@@ -1,16 +1,25 @@
 const eventTypes = require('./eventTypes').eventTypes;
 
 
-module.exports.addSSN =  (params) => {
-  const {user, ssn} = params;
-  if(user.ssn != null) {
-    throw new Error('User already have ssn');
-  }
-
-  const event = eventTypes.find((e) => e.type==='UserAddedSSN');
+module.exports.addSsn = (params) => {
+  const { user, ssn } = params;
+  const event = eventTypes.find((e) => e.type === 'UserAddedSsn');
   event.userId = user.id
-  event.SSN = ssn
+  event.ssn = ssn
   return [
     event
   ]
 }
+
+module.exports.addUser = (params) => {
+  const { userId, name, email } = params;
+  const event = eventTypes.find((e) => e.type === 'UserAdded');
+  event.userId = userId;
+  event.name = name;
+  event.email = email;
+  return [
+    event
+  ]
+}
+
+

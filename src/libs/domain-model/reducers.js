@@ -7,24 +7,30 @@ module.exports.reduceUserEvents = (events) => {
   const userState = {
     id: null,
     name: null,
+    email: null,
     ssn: null
   }
   events.forEach(e => {
     switch (e.type) {
-      case 'UserAddedSSN':
+      case 'UserAddedSsn':
+        {
+          userState.ssn = e.ssn;
+        }
+        break;
+      case 'UserAdded':
         {
           userState.id = e.userId;
           userState.name = e.name;
-          userState.ssn = e.SSN;
+          userState.email = e.email;
         }
+        break;
       default: {
-        if (e != undefined) {
-          userState.id = e.userId
-          userState.name = e.name
-        }
+        throw new Error('Unknown event type in user reducer ' + e.type)
       }
     }
   });
-  console.log(userState)
+  if(userState.id === null) {
+    throw new Error('Internal error in reducer.')
+  }
   return userState;
 }

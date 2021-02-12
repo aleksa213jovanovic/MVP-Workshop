@@ -7,27 +7,47 @@ class userEventStore {
   }
 
   async getUserEventsByID(userID) {
-   // const query = this.eventModeel.find();
+    // const query = this.eventModeel.find();
     //query.where('eventData.userId').eq(userID);
-    return await this.eventModel.find({'eventData.userId': userID}).exec();
+    return await this.eventModel.find({ 'eventData.userId': userID }).exec();
   }
 
   async getUserViewByID(userID) {
-    try{
-      return await this.viewModel.findById(userID).exec();
-    } catch(err) {
+    try {
+      return await this.viewModel.find({id: userID}).exec();
+    } catch (err) {
       console.log(err);
       return;
     }
   }
 
   async updateUser(events, newUser) {
-    try{
-      await this.eventModel.create(events);
-      const user = await this.viewModel.findOneAndUpdate({id: newUser.id}, newUser).exec();
-      await user.save();
-    } catch(err) {
+    const saveEvents = events.map((e) => {
+      return {
+        eventData: e
+      }
+    });
+    try {
+      await this.eventModel.create(saveEvents);
+      const user = await this.viewModel.findOneAndUpdate({ id: newUser.id }, newUser).exec();
+    } catch (err) {
       console.log(err)
+      return;
+    }
+  }
+
+
+  async saveNewUser(events, newUser) {
+    const saveEvents = events.map((e) => {
+      return {
+        eventData: e
+      }
+    });
+    try {
+      await this.eventModel.create(saveEvents);
+      await this.viewModel.create(newUser);
+    } catch (err) {
+      console.log(err);
       return;
     }
   }

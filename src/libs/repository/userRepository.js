@@ -4,11 +4,19 @@ class userRepository {
     this.userEventStore = userEventStore;
   }
 
-  //TODO save treba preko event-store da se odvija
   async save(events, user) {
     try{
-      await this.userEventStore.updateUser(events, user);
+      await this.userEventStore.saveNewUser(events, user);
     } catch(err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  async update(events, user) {
+    try {
+      await this.userEventStore.updateUser(events, user);
+    } catch (err) {
       console.log(err)
       return;
     }
@@ -18,14 +26,19 @@ class userRepository {
     //izvlacim niz svih eventova preko event-store iz eventDB
     //pomocu reducera iz domain-modela taj niz rekonstruisem u model
     //vratim model i save funkciju
-    const allEvents = await this.userEventStore.getUserEventsByID(userId);
-    if(allEvents == undefined) {
-      throw new Error('There is no user with id ' + userId)
+    let allEvents = {};
+    try {
+      allEvents = await this.userEventStore.getUserEventsByID(userId);
+    } catch (err) {
+      console.log(err);
+      return;
+    }
+    if (allEvents.length == 0) {
+      return null;
     }
     const events = allEvents.map((model) => model._doc.eventData)
-    //console.log(events)
-    
-    return { userState: await this.reducers.reduceUserEvents(events), saveFunc: this.save};
+
+    return this.reducers.reduceUserEvents(events)
   }
 
 }

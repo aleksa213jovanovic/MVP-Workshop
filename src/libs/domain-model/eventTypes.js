@@ -6,8 +6,8 @@ module.exports.eventTypes = [
     email: null,
   },
   {
-    type: 'UserAddedSSN',
+    type: 'UserAddedSsn',
     userId: null,
-    SSN: null,
+    ssn: null,
   }
 ];
