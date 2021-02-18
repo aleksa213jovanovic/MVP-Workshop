@@ -7,21 +7,22 @@ class userEventStore {
   }
 
   async getUserEventsByID(userID) {
-    // const query = this.eventModeel.find();
-    //query.where('eventData.userId').eq(userID);
-    return await this.eventModel.find({ 'eventData.userId': userID }).exec();
+    try {
+      return await this.eventModel.find({ 'eventData.userId': userID }).exec();
+    } catch (err) {
+      throw err;
+    }
   }
 
   async getUserViewByID(userID) {
     try {
-      return await this.viewModel.find({id: userID}).exec();
+      return await this.viewModel.find({ id: userID }).exec();
     } catch (err) {
-      console.log(err);
-      return;
+      throw err;
     }
   }
 
-  async updateUser(events, newUser) {
+  async updateUser(events, updatedUser) {
     const saveEvents = events.map((e) => {
       return {
         eventData: e
@@ -29,10 +30,9 @@ class userEventStore {
     });
     try {
       await this.eventModel.create(saveEvents);
-      const user = await this.viewModel.findOneAndUpdate({ id: newUser.id }, newUser).exec();
+      const user = await this.viewModel.findOneAndUpdate({ id: updatedUser.id }, updatedUser).exec();
     } catch (err) {
-      console.log(err)
-      return;
+      throw err;
     }
   }
 
@@ -47,8 +47,7 @@ class userEventStore {
       await this.eventModel.create(saveEvents);
       await this.viewModel.create(newUser);
     } catch (err) {
-      console.log(err);
-      return;
+      throw err;
     }
   }
 }

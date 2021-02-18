@@ -19,7 +19,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "ipfs": "^0.54.1",
-    "joi": "^17.3.0",
+    "joi": "^17.4.0",
     "mongoose": "^5.11.15",
     "node-uuid": "^1.4.8",
     "orbit-db": "^0.26.0"

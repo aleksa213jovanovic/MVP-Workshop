@@ -2,71 +2,48 @@ const addSsn = require('../domain-model/user').addSsn
 const addUser = require('../domain-model/user').addUser;
 const UserRepository = require('../repository');
 
-//TODO izbaci iz hendlera dohvatanje userStejta u zasebnu funkciju da 
-//se kod ne bi ponavljao
+//TODO validate command object with joi
 
 module.exports = {
   handlers: [
     {
-      UserAdded: async function (command) {
+      UserAdd: async function (command) {
         const { userId, payload } = command;
         try {
+          let userState = {}
           userState = await UserRepository.getByID(userId);
-        } catch (err) {
-          console.log(err);
-          return;
-        }
 
-        if (userState != null) {
-          throw new Error('User already exists with id ', userId)
-        }
-
-        events = addUser({userId: userId, name: payload.name, email: payload.email});
-        const newUser = {
-          id: userId,
-          name: payload.name,
-          email: payload.email,
-        }
-
-        try{ 
+          const events = addUser({ currentUserState: userState, userId: userId, name: payload.name, email: payload.email });
+          
+          const newUser = {
+            id: userId,
+            name: payload.name,
+            email: payload.email,
+          }
           await UserRepository.save(events, newUser);
-        } catch(err) {
-          console.log(err)
-          return;
+
+        } catch (err) {
+          throw err;
         }
       }
     },
     {
-      UserAddedSsn: async function (command) {
-        //TODO validate command object with joi
+      UserAddSsn: async function (command) {
         const { userId, payload } = command;
-        let userState = {};
         try {
+          let userState = {};
           userState = await UserRepository.getByID(userId);
-        } catch (err) {
-          console.log(err);
-          return;
-        }
 
-        if (userState == null) {
-          throw new Error('there is no user with id ' + userId);
-        }
+          const events = addSsn({
+            currentUserState: userState,
+            ssn: payload.ssn,
+          });
 
-        if (userState.ssn != undefined) {
-          throw new Error('user already have ssn');
-        }
-
-        const events = addSsn({
-          user: userState,
-          ssn: payload.ssn,
-        });
-
-        userState.ssn = payload.ssn;
-        try {
+          userState.ssn = payload.ssn;
           await UserRepository.update(events, userState)
+
         } catch (err) {
-          console.log(err);
-          return;
+          throw err;
         }
       }
     }

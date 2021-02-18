@@ -1,4 +1,4 @@
-const app = require('./src/app');
+const app = require('./src/rest-api/router');
 const mongoose = require("mongoose");
 const preloadDB = require('./preloadDB');
 

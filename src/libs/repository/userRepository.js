@@ -8,8 +8,7 @@ class userRepository {
     try{
       await this.userEventStore.saveNewUser(events, user);
     } catch(err) {
-      console.log(err);
-      return err;
+      throw err;
     }
   }
 
@@ -17,21 +16,16 @@ class userRepository {
     try {
       await this.userEventStore.updateUser(events, user);
     } catch (err) {
-      console.log(err)
-      return;
+      throw err;
     }
   }
 
   async getByID(userId) {
-    //izvlacim niz svih eventova preko event-store iz eventDB
-    //pomocu reducera iz domain-modela taj niz rekonstruisem u model
-    //vratim model i save funkciju
     let allEvents = {};
     try {
       allEvents = await this.userEventStore.getUserEventsByID(userId);
     } catch (err) {
-      console.log(err);
-      return;
+      throw err;
     }
     if (allEvents.length == 0) {
       return null;
