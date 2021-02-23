@@ -1,5 +1,5 @@
 const UserRepository = require('./userRepository');
-const UserEventStore = require('../event-store');
+const UserStore = require('../event-store');
 const reducers = require('../domain-model/reducers');
 
-module.exports = new UserRepository(reducers, UserEventStore);
+module.exports = new UserRepository(reducers, UserStore);

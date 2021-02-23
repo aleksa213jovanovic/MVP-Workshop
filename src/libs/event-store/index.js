@@ -1,5 +1,28 @@
-const userEventStore = require('./userEventStore');
-const eventModel = require('./eventDb');
-const viewModel = require('./viewDb');
+const userStore = require('./userStore');
+const ViewDB = require('./view-db');
+const EventDB = require('./event-db');
 
-module.exports = new userEventStore(eventModel, viewModel);
+(
+  async() => {
+    try{
+    await EventDB.init();
+    }catch(err) {
+      console.log(err)
+
+      //TODO log this error
+    }
+  }
+)();
+
+(
+  async() => {
+    try{
+      await ViewDB.init();
+    }catch(err) {
+      console.log(err)
+    }
+  }
+)();
+
+
+module.exports = new userStore(EventDB, ViewDB);

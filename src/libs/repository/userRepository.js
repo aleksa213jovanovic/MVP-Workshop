@@ -1,12 +1,12 @@
 class userRepository {
-  constructor(reducers, userEventStore) {
+  constructor(reducers, UserStore) {
     this.reducers = reducers;
-    this.userEventStore = userEventStore;
+    this.UserStore = UserStore;
   }
 
   async save(events, user) {
     try{
-      await this.userEventStore.saveNewUser(events, user);
+      await this.UserStore.saveNewUser(events, user);
     } catch(err) {
       throw err;
     }
@@ -14,7 +14,7 @@ class userRepository {
 
   async update(events, user) {
     try {
-      await this.userEventStore.updateUser(events, user);
+      await this.UserStore.updateUser(events, user);
     } catch (err) {
       throw err;
     }
@@ -23,16 +23,14 @@ class userRepository {
   async getByID(userId) {
     let allEvents = {};
     try {
-      allEvents = await this.userEventStore.getUserEventsByID(userId);
+      allEvents = await this.UserStore.getUserEventsByID(userId)
     } catch (err) {
       throw err;
     }
     if (allEvents.length == 0) {
       return null;
-    }
-    const events = allEvents.map((model) => model._doc.eventData)
-
-    return this.reducers.reduceUserEvents(events)
+    }    
+    return this.reducers.reduceUserEvents(allEvents)
   }
 
 }
