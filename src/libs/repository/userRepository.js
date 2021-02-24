@@ -20,7 +20,7 @@ class userRepository {
     }
   }
 
-  async getByID(userId) {
+  async getCurrentUserStateById(userId) {
     let allEvents = {};
     try {
       allEvents = await this.UserStore.getUserEventsByID(userId)

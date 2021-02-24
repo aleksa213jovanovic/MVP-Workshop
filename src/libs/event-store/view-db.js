@@ -13,12 +13,9 @@ class ViewStoreDB {
   async init() {
     try {
       const nodeConfig = {
+        relay: { enabled: true, hop: { enabled: true, active: true } },
         repo: './ipfs_keyvalue',
         Pubsub: { Enabled: true },
-        Bootstrap: [],
-        Addresses: {
-          Swarm: []
-        }
       }
       this.node = await this.IPFS.create(nodeConfig);
 
@@ -61,15 +58,12 @@ class ViewStoreDB {
   }
 
   async getAllUsers() {
-    /*
     try{
       const allUsers = await this.viewStoreDB.all;
       return allUsers;
     }catch(err) {
       throw err;
     }
-*/
-    return await this.viewStoreDB.all;
   }
 }
 

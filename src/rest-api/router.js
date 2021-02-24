@@ -3,9 +3,8 @@ const handlers = require('../libs/command-handler/commandHandlers').handlers;
 const queryHandler = require('../libs/query-handler/queryHandler').queryHandler;
 const router = express();
 const errorHandler = require('./error-middleware');
+const ClientError = require('./client-error');
 router.use(express.json());
-
-const viewdb = require('../libs/event-store/view-db');
 
 router.get('/api/v1/user/:userId/get-ssn', async (req, res, next) => {
 
@@ -25,14 +24,12 @@ router.get('/api/v1/user/:userId/get-ssn', async (req, res, next) => {
 
 router.post('/api/v1/user/', async (req, res, next) => {
   if (!req.body.command.name) {
-    res.status(500);
-    res.send('Error: request body must contain command object with name property');
-    return
+    next(new ClientError('Error: request body must contain command object with name property', 500, 'Client error: request body must contain command object with name property'))
+    return;
   }
   const commandHandlerObject = handlers.find((functionObject) => Object.keys(functionObject)[0] == req.body.command.name);
   if (!commandHandlerObject) {
-    res.status(500);
-    res.send('Error: unknown command ' + req.body.command.name);
+    next(new ClientError('Error: unknown command ' + req.body.command.name, 500, 'Client error: unknown command ' + req.body.command.name))
     return;
   }
   const commandHandler = Object.values(commandHandlerObject)[0];

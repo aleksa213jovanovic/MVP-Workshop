@@ -6,7 +6,7 @@ class userStore {
 
   async getUserEventsByID(userId) {
     try {
-      return await this.EventDB.getEventsByUserID(userId)
+      return await this.EventDB.getEventsByUserID(userId);
     } catch (err) {
       throw err;
     }
@@ -23,8 +23,8 @@ class userStore {
 
   async updateUser(events, updatedUser) {
     try {
-      await this.EventDB.appendEventList(events)
-      const user = await this.ViewDB.updateUser(updatedUser);
+      await this.EventDB.appendEventList(events);
+      await this.ViewDB.updateUser(updatedUser);
     } catch (err) {
       throw err;
     }
@@ -33,7 +33,7 @@ class userStore {
 
   async saveNewUser(events, newUser) {
     try {
-      await this.EventDB.appendEventList(events)
+      await this.EventDB.appendEventList(events);
       await this.ViewDB.addNewUser(newUser);
     } catch (err) {
       throw err;

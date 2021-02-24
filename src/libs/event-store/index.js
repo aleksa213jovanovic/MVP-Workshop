@@ -24,5 +24,17 @@ const EventDB = require('./event-db');
   }
 )();
 
+/*
+(
+async() =>{
+  try{
+    const value = await ViewDB.node.bootstrap.list();
+    console.log(value);
+  }catch(err){
+    console.log(err)
+  }
+}
+)();
+*/
 
 module.exports = new userStore(EventDB, ViewDB);

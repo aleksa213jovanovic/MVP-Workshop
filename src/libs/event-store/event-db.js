@@ -13,13 +13,9 @@ class EventStoreDB {
   async init() {
     try {
       const nodeConfig = {
+        relay: { enabled: true, hop: { enabled: true, active: true } },
         repo: './ipfs_es',
         Pubsub: { Enabled: true },
-        Bootstrap: [],
-        Addresses: {
-          Swarm: ["/ip4/0.0.0.0/tcp/4022",
-            "/ip4/127.0.0.1/tcp/4033/ws"]
-        }
       }
       this.node = await this.IPFS.create(nodeConfig);
 
