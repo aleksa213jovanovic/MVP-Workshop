@@ -11,6 +11,11 @@ module.exports.userAddSchema = joi.object({
   payload: payloadUserAddSchema
 })
 
-module.exports.UserAddSsnSchema = joi.object({
+const payloadUserAddSsnSchema = joi.object({
   ssn: joi.string().pattern(new RegExp('^[0-9]{9}$'))
+})
+
+module.exports.UserAddSsnSchema = joi.object({
+  userId: joi.string().alphanum().required(),
+  payload: payloadUserAddSsnSchema  
 })

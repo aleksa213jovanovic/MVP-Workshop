@@ -18,6 +18,7 @@
   "homepage": "https://github.com/aleksa213jovanovic/MVP-Workshop#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "firebase": "^8.2.9",
     "ipfs": "^0.54.2",
     "joi": "^17.4.0",
     "node-uuid": "^1.4.8",
