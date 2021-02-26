@@ -1,0 +1,93 @@
+{
+  "Addresses": {
+    "Swarm": [
+      "/ip4/0.0.0.0/tcp/4202",
+      "/ip4/127.0.0.1/tcp/4303/ws"
+    ],
+    "Announce": [],
+    "API": "/ip4/127.0.0.1/tcp/5002",
+    "Gateway": "/ip4/127.0.0.1/tcp/9090",
+    "RPC": "/ip4/127.0.0.1/tcp/5003",
+    "Delegates": [
+      "/dns4/node0.delegate.ipfs.io/tcp/443/https",
+      "/dns4/node1.delegate.ipfs.io/tcp/443/https",
+      "/dns4/node2.delegate.ipfs.io/tcp/443/https",
+      "/dns4/node3.delegate.ipfs.io/tcp/443/https"
+    ]
+  },
+  "Discovery": {
+    "MDNS": {
+      "Enabled": true,
+      "Interval": 10
+    },
+    "webRTCStar": {
+      "Enabled": true
+    }
+  },
+  "Bootstrap": [
+    "/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmZa1sAxajnQjVM8WjWXoMbmPd7NsWhfKsPkErzpm9wGkp",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa",
+    "/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt",
+    "/dns4/node0.preload.ipfs.io/tcp/443/wss/p2p/QmZMxNdpMkewiVZLMRxaNxUeZpDUb34pWjZ1kZvsd16Zic",
+    "/dns4/node1.preload.ipfs.io/tcp/443/wss/p2p/Qmbut9Ywz9YEDrz8ySBSgWyJk41Uvm2QJPhwDJzJyGFsD6",
+    "/dns4/node2.preload.ipfs.io/tcp/443/wss/p2p/QmV7gnbW5VTcJ3oyM2Xk1rdFBJ3kTkvxc87UFGsun29STS",
+    "/dns4/node3.preload.ipfs.io/tcp/443/wss/p2p/QmY7JB6MQXhxHvq7dBDh4HpbH29v4yE9JRadAVpndvzySN"
+  ],
+  "Pubsub": {
+    "Router": "gossipsub",
+    "Enabled": true
+  },
+  "Swarm": {
+    "ConnMgr": {
+      "LowWater": 200,
+      "HighWater": 500
+    },
+    "DisableNatPortMap": false
+  },
+  "Routing": {
+    "Type": "none"
+  },
+  "Identity": {
+    "PeerID": "QmQQ5T49pbNDqrtJXbzD5VjVsNPjCp1gaugHQ7tJuMZvY6",
+    "PrivKey": "CAASqAkwggSkAgEAAoIBAQDOeWuXlkU5y4+tMvTCxqP5Jq7Blag6u6TXPCLnzjPMih8LOshenRWYIBtbkGXXOeREdKtwJn/+SScV8Ogxkmhqkle8MrVqyoFT9z5D/IbyUoPX0ihHZSVCg5HZNjFynsXYWRUNb09qBjBBWUFTeQZVZB41Q2iWP/IEs9rKlc9unnrV2DqYW8RHjKJD/nNYhaAdXe0ehHP1pq8fBp4YLq86fD88AHF6vvZgDC/YO85DZISURgL/qdRENkO1V7HSk0i7sklcXgVzD07wzOsEEJBhMt1K5rHgW4GucOP4xHcnDEDNsSFG/sCh+CgQqwCNFz1Y0spNGkq7HA/4KCv1UUrvAgMBAAECggEAMyrR5/n8Y8s3atOS5mX1orvcWOruisePnSsw90MZgRnFgbHqj8/b1xw1y2YoZsLY98H17lAMLgcQ4ZYW5JoEuExV47SpUrKmhBlkW9LL2mdqduSEyNSe/DHAxhRxApeoLeo9llu8UWkBMmCdGMOIN0cdWVPAKmPkZRfxI30mr6GyKshAiRaTEgbkm3TDzDPaqB7nUxi+/208txZ2tEfMKvp9BT84ZBK6mrDpIRsFmBuOEpVGNdmL4r6A+QeZj6wD4cM1kyiaElDkW8Qy8SqVBwF8ZjFoz091pFGhPkbmWnIUN8Ns+x8a+Diw16yvFORkTJ43O8PpMo6aJ5EJhxQZKQKBgQD63UcfZLsZvjI/Ee0i55B4vN3ilH4UDTgR+PVz/anp4wGCE9ctQdP7/RXGo0RqMTZW6Mlg3rTU8iJY93qEh5n9K/ZMz0xjI5niJYkWv9uXKkbz+H6egpWywQStn2RAUhGzJBDc5aE5r1tHWPhRncWQ5RzUyv0DeU0+SyswGg6cNQKBgQDSs4EeNPtATZT7lSk84WG+km1bAdHB9tXbQ45WnwLNJdEmPACi40Mcmbq4jjIolL1MvFjrJ6Dga9//3vDKwbhQJuFWqO8wbVRQHIs06rLhxC16M2eSOlmVTY3ralF/bc5MH9HICViDYVWhRHcaygBmFnOFqEX2TxE/QSdF+GVHEwKBgQCUhQzmeSyMQR5eWK6cS5ws3yQ+UMuT83+OpGYtFbDS16K88CIkmSR3u45425BVjm0tZwRSZYeJyxCqu1m9vMpeKPjY4KHIz/r6+F4BKfVHua/oIOZV0dnuyneKkyM3MV9pP6D8Jrcc/8R6qSHasB2Xew1mrga9V8Nzbe1TvRmJQQKBgC6plmTMMwCQrffxlspm17DO2O0YwA2GzuHaWkGQwZwRTfp7u2BXmFtTKGkLBMy79Bh0dfTON/C7s0YFZ6pfsKP/mFQK4b4F2HBNgf7cI3WgbrnrfHqD9ab9H/sM9rOT6+Yr/dehSjr+aWpnsUD7j48MVdU56RSdeiJaGYqDclqFAoGBAL9Ey1V+gI+IRPNSP8kJjP/IUy+gGz7IJM9MGl2Fa8ICSxRZia/mD8zfF5QYAMlxptPs5NPvOGP6Wp41O3mp37FDdkKvVnjlXuN3Nk1an31pDzIa5yWuejs0EcfIt43TDheM8j0LfYuBqR+oi4asE0qGOPeTikH/eYV6TjEEePpi"
+  },
+  "datastore": {
+    "Spec": {
+      "type": "mount",
+      "mounts": [
+        {
+          "mountpoint": "/blocks",
+          "type": "measure",
+          "prefix": "flatfs.datastore",
+          "child": {
+            "type": "flatfs",
+            "path": "blocks",
+            "sync": true,
+            "shardFunc": "/repo/flatfs/shard/v1/next-to-last/2"
+          }
+        },
+        {
+          "mountpoint": "/",
+          "type": "measure",
+          "prefix": "leveldb.datastore",
+          "child": {
+            "type": "levelds",
+            "path": "datastore",
+            "compression": "none"
+          }
+        }
+      ]
+    }
+  },
+  "Keychain": {
+    "dek": {
+      "keyLength": 64,
+      "iterationCount": 10000,
+      "salt": "n84ik2LmPUET8mRRY3nNzsep",
+      "hash": "sha2-512"
+    }
+  }
+}

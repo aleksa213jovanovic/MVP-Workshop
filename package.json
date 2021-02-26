@@ -1,0 +1,29 @@
+{
+  "name": "mvp-workshop",
+  "version": "1.0.0",
+  "description": "This is interview task number 4. CQRS and Event Sourcing with Node.js and IPFS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksa213jovanovic/MVP-Workshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleksa213jovanovic/MVP-Workshop/issues"
+  },
+  "homepage": "https://github.com/aleksa213jovanovic/MVP-Workshop#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase": "^8.2.9",
+    "firebase-admin": "^9.5.0",
+    "ipfs": "^0.54.2",
+    "joi": "^17.4.0",
+    "node-uuid": "^1.4.8",
+    "orbit-db": "^0.26.0",
+    "winston": "^3.3.3"
+  }
+}
