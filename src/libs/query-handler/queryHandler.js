@@ -11,7 +11,6 @@ module.exports.queryHandler = async (params) => {
     return user.ssn;
   } catch (err) {
 
-    //TODO ispravi ovo da baca QueryError ako userId ne postoji u bazi
     throw err;
   }
 }
