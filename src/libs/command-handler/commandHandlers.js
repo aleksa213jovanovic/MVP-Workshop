@@ -9,7 +9,6 @@ module.exports = {
   handlers: [
     {
       UserAdd: async function (command) {
-
         const valid = validateUserAdd.validate(command);
         if(valid.error) {
           throw new ValidationError("Error " + valid.error.message, 400, "Client : " + valid.error);

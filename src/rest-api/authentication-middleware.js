@@ -54,7 +54,7 @@ class AuthMiddleware {
       next()
       return
     }
-    if(req.path.startsWith('/sign-in/') && req.method == 'GET') {
+    if(req.path.startsWith('/sign-in') && req.method == 'POST') {
       next();
       return
     }

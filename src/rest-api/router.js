@@ -37,9 +37,9 @@ router.post('/api/v1/user/', async (req, res, next) => {
   }
 });
 
-router.get('/sign-in/:email/:password', async (req, res, next) => {
+router.post('/sign-in', async (req, res, next) => {
   try {
-    const { email, password } = req.params
+    const { email, password } = req.body
     const token = await authMiddleware.getToken(email, password)
     res.status(200);
     res.send(token);
