@@ -4,23 +4,10 @@ const queryHandler = require('../libs/query-handler/queryHandler').queryHandler;
 const router = express();
 const errorHandler = require('./error-middleware');
 const ClientError = require('./client-error');
+const authMiddleware = require('./authentication-middleware');
+
 router.use(express.json());
-
-router.get('/api/v1/user/:userId/get-ssn', async (req, res, next) => {
-
-  const { userId } = req.params;
-  try {
-    const userSsn = await queryHandler({userId: userId.toString()});
-    res.status(200);
-    if(userSsn == undefined) {
-      res.send('User does not have ssn')
-    }
-    res.send(userSsn);
-  }
-  catch (err) {
-    next(err);
-  }
-});
+router.use(authMiddleware.authorize.bind(authMiddleware));
 
 router.post('/api/v1/user/', async (req, res, next) => {
   if (!req.body.command.name) {
@@ -34,7 +21,7 @@ router.post('/api/v1/user/', async (req, res, next) => {
   }
   const commandHandler = Object.values(commandHandlerObject)[0];
   const command = {
-    userId: req.body.userId,
+    userId: res.locals.userId,
     payload: req.body.command.payload,
   }
 
@@ -43,9 +30,44 @@ router.post('/api/v1/user/', async (req, res, next) => {
     res.status(201);
     res.send('Command executed');
   } catch (err) {
+    if(req.body.command.name == 'UserAdd') {
+      await authMiddleware.deleteAcc(res.locals.userId)
+    }
     next(err);
   }
 });
+
+router.get('/sign-in/:email/:password', async (req, res, next) => {
+  try {
+    const { email, password } = req.params
+    const token = await authMiddleware.getToken(email, password)
+    res.status(200);
+    res.send(token);
+  } catch (err) {
+    next(err);
+  }
+})
+
+router.get('/api/v1/user/get-ssn', async (req, res, next) => {
+
+  const { userId } = res.locals;
+  try {
+    const userSsn = await queryHandler({ userId: userId.toString() });
+    res.status(200);
+    if (userSsn == undefined) {
+      res.send('User does not have ssn')
+    }
+    res.send(userSsn);
+  }
+  catch (err) {
+    next(err);
+  }
+});
+
+router.all('*', () => {
+  next(new ClientError('Error: unknown route', 400, 'Client error: unknown route'));
+  return;
+})
 
 router.use(errorHandler)
 

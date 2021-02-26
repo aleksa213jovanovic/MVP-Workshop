@@ -7,8 +7,6 @@ const EventDB = require('../database/event-db');
     await EventDB.init();
     }catch(err) {
       console.log(err)
-
-      //TODO log this error
     }
   }
 )();
