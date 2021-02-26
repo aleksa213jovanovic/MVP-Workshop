@@ -7,6 +7,7 @@ const EventDB = require('../database/event-db');
     await EventDB.init();
     }catch(err) {
       console.log(err)
+      process.exit(1)
     }
   }
 )();
@@ -17,6 +18,7 @@ const EventDB = require('../database/event-db');
       await ViewDB.init();
     }catch(err) {
       console.log(err)
+      process.exit(1)
     }
   }
 )();
